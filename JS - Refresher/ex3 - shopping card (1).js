@@ -64,20 +64,22 @@ function addProductToCart(productId) {
  *  - CASE 2 : if the product id does NOT exist : do nothing !
  
  *
- * @param {*} productId  the product id to add
+ * @param {*} productId  the product id to remove
  */
 function removeProductFromCart(productId) {
-  // Write your code here
+  // Tìm chỉ mục của sản phẩm trong giỏ hàng
   const existingProductIndex = SHOPPING_CART.findIndex(item => item.id === productId);
-  if (existingProductIndex !== -1) {
-    // If the product exists, increment its quantity
-    SHOPPING_CART[existingProductIndex].quantity++;
-  } else {
-    // If the product does not exist, add it to the cart with quantity 1
-    SHOPPING_CART.push({ id: productId, quantity: 1 });
+  
+  // CASE 1: Nếu sản phẩm tồn tại trong giỏ hàng và số lượng >= 2, giảm số lượng đi 1
+  if (existingProductIndex !== -1 && SHOPPING_CART[existingProductIndex].quantity >= 2) {
+    SHOPPING_CART[existingProductIndex].quantity--;
+  } 
+  // CASE 2: Nếu sản phẩm tồn tại trong giỏ hàng và số lượng là 1, loại bỏ sản phẩm khỏi giỏ hàng
+  else if (existingProductIndex !== -1 && SHOPPING_CART[existingProductIndex].quantity === 1) {
+    SHOPPING_CART.splice(existingProductIndex, 1);
   }
+  // CASE 3: Nếu sản phẩm không tồn tại trong giỏ hàng, không làm gì cả
 }
-
 // --------------------------------------------------------
 // TESTS ZONE
 // --------------------------------------------------------

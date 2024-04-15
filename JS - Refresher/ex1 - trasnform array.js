@@ -17,3 +17,10 @@ function transformToObjects(listOfNumbers) {
 
 console.log(JSON.stringify(transformToObjects([1, 2, 3]))); // [{val: 1}, {val: 2}, {val: 3}]
 // Should  be     [{val: 1}, {val: 2}, {val: 3}]
+
+
+
+
+
+
+  
